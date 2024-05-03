@@ -20,9 +20,9 @@ const $$id = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$id;
   const { id } = Astro2.params;
-  const response = await fetch(`https://bk-ventas-production.up.railway.app/api/productos/${id}`);
+  const response = await fetch(`https://strapi-qa-production-936f.up.railway.app/api/productos/${id}`);
   const producto = await response.json();
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="row mt-5"> <div class="col-ms-4"> <img${addAttribute(producto.data.attributes.imagen, "src")} alt="imagen" class="img-fluid rounded-start"> </div> <div class="col-ms-8"> <div class="card-body"> <h5 class="card-title">${producto.data.attributes.nombre}</h5> <p class="card-text">Precio: ${producto.data.attributes.precioVenta} $</p> <a href="#" class="btn btn-primary"> agregar</a> <a href="/" class="btn btn-primary"> Volver</a> </div> </div> </div> ` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="row mt-5"> <div class="col-ms-4"> <img${addAttribute(producto.data.attributes.imagen, "src")} alt="imagen" class="img-fluid rounded-start"> </div> <div class="col-ms-8"> <div class="card-body"> <h5 class="card-title">${producto.data.attributes.nombre}</h5> <p class="card-text">Precio: ${producto.data.attributes.precio} $</p> <a href="#" class="btn btn-primary"> Agregar</a> <a href="/" class="btn btn-primary"> Volver</a> </div> </div> </div> ` })}`;
 }, "C:/Users/zeek2/OneDrive/Escritorio/FT-Gastro/src/pages/producto/[id].astro", void 0);
 
 const $$file = "C:/Users/zeek2/OneDrive/Escritorio/FT-Gastro/src/pages/producto/[id].astro";

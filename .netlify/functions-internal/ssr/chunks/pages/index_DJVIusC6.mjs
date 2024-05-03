@@ -2,7 +2,7 @@
 import { c as createAstro, d as createComponent, r as renderTemplate, h as renderComponent } from '../astro_BXQihkh6.mjs';
 import 'kleur/colors';
 import 'html-escaper';
-import { $ as $$Layout } from './_id__Cph1JPqf.mjs';
+import { $ as $$Layout } from './_id__B7GYZ-Ff.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import { atom } from 'nanostores';
@@ -179,11 +179,10 @@ const Table = () => {
   const [productosVenta, setProductosVenta] = useState([]);
   useEffect(() => {
     const productos = $carrito.map((item) => ({
-      producto: item.id,
+      id: item.id,
       nombre: item.attributes.nombre,
       precio: item.attributes.precio,
-      cantidad: item.cantidad,
-      subtotal: item.attributes.precio * item.cantidad
+      cantidad: item.cantidad
     }));
     setProductosVenta(productos);
   }, [$carrito]);
@@ -198,8 +197,13 @@ const Table = () => {
         data: {
           fechaPedido: obtenerFecha(),
           cliente: "1",
-          Productos: productosVenta,
-          estado: "pendiente"
+          Productos: {
+            items: productosVenta,
+            total
+          },
+          estado: "pendiente",
+          // Ver si por query string se puede enviar la el celular del cliente
+          celular: "1234567890"
         }
       };
       fetch("https://strapi-qa-production-936f.up.railway.app/api/pedidos", {
