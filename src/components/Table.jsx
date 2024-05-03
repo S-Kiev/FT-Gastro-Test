@@ -14,11 +14,10 @@ const Table = () => {
 
   useEffect(() => {
     const productos = $carrito.map((item) => ({
-      producto: item.id,
+      id: item.id,
       nombre: item.attributes.nombre,
       precio: item.attributes.precio,
       cantidad: item.cantidad,
-      subtotal: item.attributes.precio * item.cantidad,
     }));
     setProductosVenta(productos);
   }, [$carrito]);
@@ -35,8 +34,11 @@ const Table = () => {
         data: {
           fechaPedido: obtenerFecha(),
           cliente: "1",
-          Productos: productosVenta,
+          Productos: { items: productosVenta,
+                       total: total,},
           estado: 'pendiente',
+          // Ver si por query string se puede enviar la el celular del cliente
+          celular: "1234567890",
         },
       };
       fetch("https://strapi-qa-production-936f.up.railway.app/api/pedidos", {
